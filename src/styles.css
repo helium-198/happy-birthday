@@ -62,8 +62,8 @@
   --blush: oklch(0.86 0.06 12);
   --sage: oklch(0.68 0.05 148);
   --paper: url("/images/parchment.jpg");
-  --shadow-page: 0 1px 2px color-mix(in oklab, var(--ink) 8%, transparent),
-    0 18px 40px -24px color-mix(in oklab, var(--ink) 35%, transparent);
+  --shadow-page: 0 1px 2px color-mix(in oklab, var(--ink) 10%, transparent),
+    0 24px 50px -22px color-mix(in oklab, var(--ink) 45%, transparent);
   --gradient-veil: linear-gradient(
     180deg,
     color-mix(in oklab, var(--background) 82%, transparent),
@@ -79,7 +79,7 @@
   body {
     background-color: var(--color-background);
     background-image: var(--paper);
-    background-size: 640px;
+    background-size: 900px;
     background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-body);
@@ -100,9 +100,9 @@
 }
 
 @utility paper-card {
-  background-color: color-mix(in oklab, var(--card) 88%, transparent);
+  background-color: oklch(0.995 0.006 92);
   background-image: var(--paper);
-  background-blend-mode: multiply;
+  background-blend-mode: soft-light;
   background-size: 520px;
   box-shadow: var(--shadow-page);
   border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
