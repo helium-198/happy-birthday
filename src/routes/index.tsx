@@ -146,6 +146,17 @@ function Keepsake() {
           <p className="font-display text-sm tracking-[0.45em] text-muted-foreground uppercase">
             For you, on your twenty-second
           </p>
+          <p className="mt-6 font-display text-4xl leading-tight text-ink italic sm:text-5xl">
+            Happy birthday, my love.
+          </p>
+          <p className="mt-5 font-body text-base leading-loose text-foreground/90 sm:text-lg">
+            I hope today is soft and slow and full of everything you like — good light,
+            good tea, tulips somewhere. I'm so glad you were born, and so glad it's you I
+            get to tell that to.
+          </p>
+          <div className="mt-8">
+            <Ornament label="✦" />
+          </div>
           <h1 className="mt-6 font-display text-5xl leading-[1.05] text-ink italic sm:text-6xl lg:text-7xl">
             Twenty-two poems,
             <br />
