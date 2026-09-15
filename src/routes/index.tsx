@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ArrowUp } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import poems from "@/data/poems.json";
@@ -8,20 +9,25 @@ import tulipSprig from "@/assets/tulip-sprig.png";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "One For Every Year — A Birthday Keepsake" },
+      { title: "Happy Birthday Aashi!" },
       {
         name: "description",
         content:
-          "A quiet little book of poems written for her birthday, among pink and white tulips.",
+          "A quiet birthday keepsake for Aashi, with 22 poems written by her love.",
       },
-      { property: "og:title", content: "One For Every Year — A Birthday Keepsake" },
+      { property: "og:title", content: "Happy Birthday Aashi!" },
       {
         property: "og:description",
         content:
-          "A quiet little book of poems written for her birthday, among pink and white tulips.",
+          "A quiet birthday keepsake for Aashi, with 22 poems written by her love.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Happy Birthday Aashi!" },
+      {
+        name: "twitter:description",
+        content: "A quiet birthday keepsake for Aashi, with 22 poems written by her love.",
+      },
     ],
   }),
   component: Keepsake,
@@ -137,6 +143,7 @@ function Keepsake() {
   const cardRefs = useRef<(HTMLElement | null)[]>([]);
   const [active, setActive] = useState(0);
   const [inPoems, setInPoems] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   const registerRef = useCallback((i: number, el: HTMLElement | null) => {
     cardRefs.current[i] = el;
@@ -160,6 +167,13 @@ function Keepsake() {
     );
     for (const el of cardRefs.current) if (el) io.observe(el);
     return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => setShowScrollTop(window.scrollY > 500);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const goTo = useCallback((i: number) => {
@@ -190,28 +204,27 @@ function Keepsake() {
 
         <div className="relative z-10 mx-auto max-w-xl">
           <p className="font-display text-sm tracking-[0.45em] text-muted-foreground uppercase">
-            For you, today
+            For Aashi, my love
           </p>
           <h1 className="mt-6 font-display text-4xl leading-tight text-ink italic sm:text-5xl">
-            Happy birthday, my love.
+            Happy Birthday Aashi!
           </h1>
           <p className="mt-5 font-body text-base leading-loose text-foreground/90 sm:text-lg">
-            I hope the day is slow, and the light is good, and somebody hands you tulips
-            before you think to buy them yourself.
+            As you turn 22, may your dreams come true, and may you achieve
+            everything your heart hopes for.
           </p>
           <div className="mt-8">
             <Ornament label="✦" />
           </div>
           <p className="mt-6 font-display text-3xl leading-[1.15] text-ink italic sm:text-4xl">
-            One for every year
+            Twenty-two poems for you
           </p>
           <div className="mt-8">
             <Ornament label="✦" />
           </div>
           <p className="mt-8 font-body text-lg leading-loose text-foreground/90 sm:text-xl">
-            These got written late, mostly after our calls, when I still had things left
-            to say. None of them are new to you. I only wanted them somewhere they'd
-            keep.
+            I gathered one poem for each year, my love, with a little piece of us held in
+            each one.
           </p>
 
           <a
@@ -228,7 +241,7 @@ function Keepsake() {
         <div className="mx-auto max-w-2xl text-center">
           <Ornament label="The Poems" />
           <p className="mt-6 font-body text-base text-muted-foreground italic">
-            Read them slowly — one page at a time, or turn straight to any of them.
+            Read them slowly, one page at a time, or turn straight to any of them.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
             {allPoems.map((_, i) => (
@@ -281,6 +294,16 @@ function Keepsake() {
         </div>
       </div>
 
+      <button
+        type="button"
+        aria-label="Scroll to top"
+        title="Scroll to top"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        className={`fixed right-5 bottom-5 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card/90 text-ink shadow-sm backdrop-blur transition-all duration-500 hover:bg-secondary sm:right-8 sm:bottom-8 ${showScrollTop ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"}`}
+      >
+        <ArrowUp size={18} strokeWidth={1.5} aria-hidden="true" />
+      </button>
+
       {/* Closing */}
       <section className="relative px-6 pt-8 pb-32">
         <img
@@ -308,14 +331,14 @@ function Keepsake() {
         >
           <Ornament label="✦" />
           <p className="mt-10 font-display text-3xl leading-snug text-ink italic sm:text-4xl">
-            That's the end of them, for now.
+            A little something to keep
           </p>
           <p className="mt-8 font-body text-lg leading-loose text-foreground/90">
-            I'll keep writing, the way I keep calling. Come back here on a dull day and
-            read one, and let it do the thing I'd be doing if I were there.
+            For the quiet days, the late nights, and all the moments still waiting for
+            you.
           </p>
           <p className="mt-10 font-display text-xl italic text-muted-foreground">
-            Yours — happy birthday.
+            With all my love, happy birthday.
           </p>
         </div>
       </section>
