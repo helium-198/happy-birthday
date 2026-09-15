@@ -5,6 +5,7 @@ import { defineConfig } from "vite";
 import tsConfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
+  base: "/happy-birthday/",
   plugins: [
     tanstackStart({ customViteConfig: { server: { entry: "server" } } }),
     react(),
