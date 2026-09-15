@@ -138,7 +138,7 @@ function PoemCard({
   );
 }
 
-function Keepsake() {
+export function Keepsake() {
   const closing = useReveal<HTMLDivElement>();
   const cardRefs = useRef<(HTMLElement | null)[]>([]);
   const [active, setActive] = useState(0);

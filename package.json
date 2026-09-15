@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
+    "build:pages": "vite build --config vite.pages.config.ts",
     "prepare:pages": "node scripts/prepare-pages.mjs",
-    "deploy": "npm run build && npm run prepare:pages && gh-pages -d dist/client",
+    "deploy": "npm run build:pages && npm run prepare:pages && gh-pages -d dist/client",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
